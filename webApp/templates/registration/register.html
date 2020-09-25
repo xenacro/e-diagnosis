@@ -4,7 +4,18 @@
   <h1>Create new Account</h1>
   <form method="POST">
   {% csrf_token %}
-    {{form.as_p}}
+    {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% if field.help_text %}
+      <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    </p>
+    {% endfor %}
     <button>Register</button>
   </form>
 {% endblock %}
