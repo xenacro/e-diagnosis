@@ -1,5 +1,22 @@
 {% extends 'index.html' %}
 
 {% block content %}
+{% load static %}
+  
+
   <h1>Welcome, {{user.username}}</h1>
+  <div class="body-container container">
+    <div class="row">
+      <div class="add-scan col-md-6 card">
+        <p>
+          <img id="add-scan-logo" src="{% static "images/add-img.png" %}" class="img-thumbnail" />
+        </p>
+        <a id="add-scan-button" class="btn btn-success" href="#">Add a scan</a>
+      </div>
+      <div class="read-scan col-md-6 card">
+        <img id="see-scan-logo" src="{% static "images/view.png" %}" class="img-thumbnail" />
+        <a id="see-scan-button" class="btn btn-primary" href="#">View the Scans</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

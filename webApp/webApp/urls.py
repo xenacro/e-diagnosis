@@ -21,4 +21,5 @@ urlpatterns = [
     # path('', include('login.urls')),
     path('admin/', admin.site.urls),
     path('', include('login.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
