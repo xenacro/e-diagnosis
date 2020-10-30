@@ -11,7 +11,14 @@
         <p>
           <img id="add-scan-logo" src="{% static "images/add-img.png" %}" class="img-thumbnail" />
         </p>
-        <a id="add-scan-button" class="btn btn-success" href="#">Add a scan</a>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="custom-file">
+            <input type="file" name="myfile" class="custom-file-input" id="myFile">
+            <label class="custom-file-label" for="myFile">Choose file</label>
+            <button type="submit" id="add-scan-button" class="btn btn-success">Add a scan</button>
+          </div>
+        </form>
       </div>
       <div class="read-scan col-md-6 card">
         <img id="see-scan-logo" src="{% static "images/view.png" %}" class="img-thumbnail" />
