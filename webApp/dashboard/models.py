@@ -13,21 +13,22 @@ class MyUser(AbstractUser):
 
 # Model for patient.
 
-class patientForm(models.Model):
+class Patient(models.Model):
     patientemail = models.EmailField("Enter Email", unique=True)
     docId = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=101)
     phone = models.CharField("Enter Without any country/state codes", max_length=10, unique=True)
-    class Meta:
-        db_table = "patient"
 
+    def __str__(self):
+        return self.name
 # Model for Scans
 
-class scansForm(models.Model):
-    patientId = models.ForeignKey(patientForm, on_delete=models.CASCADE)
+class Scan(models.Model):
+    patientId = models.ForeignKey(Patient, on_delete=models.CASCADE)
     scans = models.FileField() #for storing scans
     result = models.CharField(max_length=1000)
     remarks = models.CharField(max_length=1000)
     dateOfScan = models.DateField()
-    class Meta:
-        db_table = "scans"
+
+    def __str__(self):
+        return str(self.id)

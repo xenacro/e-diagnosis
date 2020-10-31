@@ -23,4 +23,4 @@ class MyUserChangeForm(UserChangeForm):
         model = MyUser
         fields = ('username', 'mobile_number', 'bio')
 
-#form for adding patient
+#form for adding patient 
