@@ -22,3 +22,5 @@ class MyUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = MyUser
         fields = ('username', 'mobile_number', 'bio')
+
+#form for adding patient
