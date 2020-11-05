@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import *
+from .models import MyUser, Patient  # pylint: disable=relative-beyond-top-level
+from django.forms import ModelForm
+
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text=' ')
@@ -24,3 +26,12 @@ class MyUserChangeForm(UserChangeForm):
         fields = ('username', 'mobile_number', 'bio')
 
 #form for adding patient 
+class addPatientForm(ModelForm):
+    patientemail=forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    name=forms.CharField(max_length=254)
+    phone=forms.CharField(max_length=10, help_text="Enter without Country/State Code")
+    
+    class Meta:
+        model = Patient
+        fields = ('patientemail', 'docId', 'name', 'phone')
+

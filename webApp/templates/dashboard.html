@@ -2,9 +2,38 @@
 
 {% block content %}
 {% load static %}
+  <div class="container">
+    <div class="text-center">
+      <div class="">
+        <img src="{% static "images/topbg.jpg" %}" alt="" class="img-fluid">
+      </div>
+      <div class="card-body">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4 mt-2">
+        <div class="list-group">
+          <a href="{% url 'add_patient' %}" class="list-group-item list-group-item-action">
+            <img src="{% static "images/add.jpg" %}" alt="" class="img-thumbnail add-img">
+            <br>Add a new patient
+          </a>
+        </div>
+      </div>
+      {% for Patient in all %}
+      <div class="col-md-4 mb-2">
+        <div class="list-group">
+          <a href="{% url 'scans' %}" class="list-group-item list-group-item-action">
+            <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+            <br><h4>{{ Patient.name }}</h4>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
   
-
-  <h1>Welcome, {{user.username}}</h1>
+  <!--<h1>Welcome, {{user.username}}</h1>
   <div class="body-container container">
     <div class="row">
       <div class="add-scan col-md-6 card">
@@ -25,5 +54,6 @@
         <a id="see-scan-button" class="btn btn-primary" href="#">View the Scans</a>
       </div>
     </div>
-  </div>
+  </div>-->
+  
 {% endblock %}

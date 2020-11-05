@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+    <div class="container">
+        <h1>Add a patient</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                
+                {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+            </p>
+            {% endfor %}
+            <button class="btn btn-primary">Add Patient</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-danger">Cancel</a>
+        </form>
+    </div>
+
+
+{% endblock %}

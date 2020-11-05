@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+
+    <div class="container">
+        <div class="text-center">
+            <div class="">
+                <img src="{% static "images/topbg.jpg" %}" alt="" class="img-fluid">
+            </div>
+            <div class="card-body">
+                <h1>{{user.first_name}} {{user.last_name}}</h1>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="list-group">
+                    <a href="{% url 'add_patient' %}" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/add.jpg" %}" alt="" class="img-thumbnail add-img">
+                        <br>Add a new scan
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
+                        <br>Cras justo odio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

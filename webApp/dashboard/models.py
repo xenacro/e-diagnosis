@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 from django.db import models
@@ -20,7 +21,7 @@ class Patient(models.Model):
     phone = models.CharField("Enter Without any country/state codes", max_length=10, unique=True)
 
     def __str__(self):
-        return self.name
+        return str(self.id)  # pylint: disable=no-member
 # Model for Scans
 
 class Scan(models.Model):
@@ -31,4 +32,4 @@ class Scan(models.Model):
     dateOfScan = models.DateField()
 
     def __str__(self):
-        return str(self.id)
+        return str(self.id)  # pylint: disable=no-member
