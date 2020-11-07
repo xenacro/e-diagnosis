@@ -26,12 +26,15 @@ class MyUserChangeForm(UserChangeForm):
         fields = ('username', 'mobile_number', 'bio')
 
 #form for adding patient 
-class addPatientForm(ModelForm):
+class AddPatientForm(ModelForm):
     patientemail=forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     name=forms.CharField(max_length=254)
     phone=forms.CharField(max_length=10, help_text="Enter without Country/State Code")
-    
+
     class Meta:
         model = Patient
         fields = ('patientemail', 'docId', 'name', 'phone')
+        widgets = {
+            'docId' : forms.HiddenInput(),
+        }
 
