@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import MyUser, Patient  # pylint: disable=relative-beyond-top-level
+from .models import MyUser, Patient, Scan  # pylint: disable=relative-beyond-top-level
 from django.forms import ModelForm
 
 
@@ -37,4 +37,13 @@ class AddPatientForm(ModelForm):
         widgets = {
             'docId' : forms.HiddenInput(),
         }
+
+class AddScanForm(ModelForm):
+    class Meta:
+        model = Scan
+        fields = ('scans', 'patientId')
+        widgets = {
+            'patientId': forms.HiddenInput(),
+        }
+
 
