@@ -5,6 +5,7 @@ from django.db import models
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 # Create your models here.
 
@@ -30,6 +31,9 @@ class Scan(models.Model):
     result = models.CharField(max_length=1000,blank=True)
     remarks = models.CharField(max_length=1000,blank=True)
     dateOfScan = models.DateField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse("scans", kwargs={"pk": self.patientId})
 
     def __str__(self):
         return str(self.id)  # pylint: disable=no-member

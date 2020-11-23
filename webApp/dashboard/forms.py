@@ -46,4 +46,7 @@ class AddScanForm(ModelForm):
             'patientId': forms.HiddenInput(),
         }
 
-
+class UpdateScanForm(ModelForm):
+    class Meta:
+        model = Scan
+        fields = ('scans','result','remarks')
