@@ -52,7 +52,7 @@
       {% for scan in patient.scans.all %}
       <div class="col-md-4 mb-2">
         <div class="list-group">
-          <a href="" class="list-group-item list-group-item-action">
+          <a href="" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter-{{ scan.pk }}">
             <img src="/media/{{scan.scans}}" alt="" class="img-thumbnail pat-img" height='200'>
             <br><h4>{{ scan.dateOfScan }}</h4>
           </a>
@@ -119,8 +119,8 @@
                         <br>Cras justo odio
                     </a>
                 </div>
-            </div> {% endcomment %}
-            {% comment %} <div class="col-md-4">
+            </div> 
+             <div class="col-md-4">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action">
                         <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
@@ -154,7 +154,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Add a Scan</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -173,6 +173,33 @@
     </div>
   </div>
 </div>
-    
+
+{% for scan in patient.scans.all %}
+    <div class="modal fade text-dark" id="exampleModalCenter-{{ scan.pk }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Scan from {{scan.dateOfScan}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                    <div class="modal-body">
+                    <img src="/media/{{scan.scans}}" alt="" class="img-thumbnail pat-img" height='200'>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+{% endfor %}
 
 {% endblock %}
