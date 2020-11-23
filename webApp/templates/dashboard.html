@@ -48,7 +48,7 @@
       {% for Patient in patient_list %}
       <div class="col-md-4 mb-2">
         <div class="list-group">
-          <a href="{% url 'scans' PatientId=Patient.pk %}" class="list-group-item list-group-item-action">
+          <a href="{% url 'scans' pk=Patient.pk %}" class="list-group-item list-group-item-action">
             <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img" >
             <br><h4>{{ Patient.name }}</h4>
           </a>

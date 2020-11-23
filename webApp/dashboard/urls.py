@@ -14,6 +14,6 @@ urlpatterns = [
     path('register/', views.registerView, name="register_url"),
     path('logout/', auth_views.LogoutView.as_view(), name="logout"),
     path('add/', views.AddPatientView.as_view(), name="add_patient"),
-    path('<slug:PatientId>/scans/', views.Scans.as_view(), name="scans"),
+    path('<slug:pk>/scans/', views.Scans.as_view(), name="scans"),
     
 ]

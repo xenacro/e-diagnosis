@@ -25,11 +25,11 @@ class Patient(models.Model):
 # Model for Scans
 
 class Scan(models.Model):
-    patientId = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patientId = models.ForeignKey(Patient,related_name='scans', on_delete=models.CASCADE)
     scans = models.FileField() #for storing scans
-    result = models.CharField(max_length=1000)
-    remarks = models.CharField(max_length=1000)
-    dateOfScan = models.DateField()
+    result = models.CharField(max_length=1000,blank=True)
+    remarks = models.CharField(max_length=1000,blank=True)
+    dateOfScan = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)  # pylint: disable=no-member

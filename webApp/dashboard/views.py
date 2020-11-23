@@ -7,6 +7,7 @@ from .forms import SignUpForm, AddPatientForm, AddScanForm
 from .models import *
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView,FormView)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormMixin
 
 
 # Create your views here.
@@ -70,17 +71,36 @@ class AddPatientView(LoginRequiredMixin, CreateView):
         }
 
 
-
-class Scans(LoginRequiredMixin, ListView):
+class Scans(LoginRequiredMixin, DetailView,FormMixin):
     redirect_field_name = 'scans'
     template_name='scans.html'
     model = Patient
     form_class = AddScanForm
+
+    def get_success_url(self):
+        return reverse('scans', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super(Scans, self).get_context_data(**kwargs)
+        context['form'] = AddScanForm(initial={'patientId': self.object})
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.save()
+        return super(Scans, self).form_valid(form)
     
-    def get_form_kwargs(self):
-        kwargs = super(Scans, self).get_form_kwargs()
-        kwargs['patientId'] = self.request.slug
-        return kwargs
+    # def get_form_kwargs(self):
+    #     kwargs = super(Scans, self).get_form_kwargs()
+    #     kwargs['patientId'] = self.request.slug
+    #     return kwargs
 
     # def get_initial(self):
     #     patientId = self.slug

@@ -29,8 +29,41 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-        <h1>{{ Scan.remarks }}</h1>
-        <div class="row text-center">
+        <h1>{{ patient.name }}</h1>
+        <div class="container">
+    <div class="text-center">
+      
+      <div class="card-body">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4 mt-2">
+        <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModalCenter">
+  <img src="{% static "images/add.jpg" %}" alt="" class="img-thumbnail add-img">
+            <br><span>Add a new Scan</span>
+</a>
+          {% comment %} <a href="{% url 'add_patient' %}" class="list-group-item list-group-item-action">
+            
+          </a> {% endcomment %}
+        </div>
+      </div>
+      {% for scan in patient.scans.all %}
+      <div class="col-md-4 mb-2">
+        <div class="list-group">
+          <a href="" class="list-group-item list-group-item-action">
+            <img src="/media/{{scan.scans}}" alt="" class="img-thumbnail pat-img" height='200'>
+            <br><h4>{{ scan.dateOfScan }}</h4>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+         
+        
+        {% comment %} <div class="row text-center">
             <div class="col-md-4">
                 <div class="list-group">
                     <div class="list-group-item list-group-item-action">
@@ -86,8 +119,8 @@
                         <br>Cras justo odio
                     </a>
                 </div>
-            </div>
-            <div class="col-md-4">
+            </div> {% endcomment %}
+            {% comment %} <div class="col-md-4">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action">
                         <img src="{% static "images/images.png" %}" alt="" class="img-thumbnail pat-img">
@@ -114,8 +147,32 @@
                         <br>Cras justo odio
                     </a>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
+
+        <div class="modal fade text-dark" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+      <div class="modal-body">
+        {% csrf_token %}
+        {{form.as_p}}
+        {% comment %} <input type="submit" value="Submit"> {% endcomment %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
     
 
 {% endblock %}
