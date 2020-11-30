@@ -102,7 +102,7 @@
                 <div class="modal-body">
                     <img src="/media/{{scan.scans}}" alt="" class="img-thumbnail pat-img" height='200'>
                     <p>Remarks : {{scan.remarks}}</p>
-                    <p>Results : {{scan.result}}</p>
+                    <p>{{scan.result|safe}}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

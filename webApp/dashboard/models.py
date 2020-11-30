@@ -21,6 +21,9 @@ class Patient(models.Model):
     name = models.CharField(max_length=101)
     phone = models.CharField("Enter Without any country/state codes", max_length=10, unique=True)
 
+    def get_absolute_url(self):
+        return reverse("dashboard")
+    
     def __str__(self):
         return str(self.id)  # pylint: disable=no-member
 # Model for Scans

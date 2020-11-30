@@ -41,9 +41,10 @@ class AddPatientForm(ModelForm):
 class AddScanForm(ModelForm):
     class Meta:
         model = Scan
-        fields = ('scans', 'patientId')
+        fields = ('scans', 'patientId','result')
         widgets = {
             'patientId': forms.HiddenInput(),
+            'result':forms.HiddenInput(),
         }
 
 class UpdateScanForm(ModelForm):

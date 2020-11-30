@@ -8,8 +8,7 @@ from .models import *
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView,FormView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormMixin
-
-
+import tensorflow as tf
 # Create your views here.
 
 
@@ -71,12 +70,24 @@ class Scans(LoginRequiredMixin, DetailView,FormMixin):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
-            return self.form_valid(form)
+            return self.form_valid(form,request)
         else:
             return self.form_invalid(form)
 
-    def form_valid(self, form):
+    def form_valid(self, form,request): 
         form.save()
+        path = 'media/'+request.FILES['scans'].name
+        img = tf.keras.preprocessing.image.load_img(path)
+        data = tf.keras.preprocessing.image.img_to_array(img)
+        data=tf.convert_to_tensor(data,dtype=tf.float32)
+        data=tf.reshape(data,(1,176,208,3))
+        mymodel = tf.keras.models.load_model('alzheimer_model.h5')
+        res=mymodel.predict(data)
+        final = 'Mild Demantia : ' + str(float("{:.3f}".format(res[0][0]*100))) + ' % <br> Moderate Demantia : ' + str(float("{:.3f}".format(res[0][1]*100))) + ' % <br> Non Demantia : ' + str(float("{:.3f}".format(res[0][2]*100)))+' % <br> Very Mild Demantia : ' + str(float("{:.3f}".format(res[0][3]*100))) + ' %'
+        print(final)
+        scan_res = Scan.objects.latest('id')
+        scan_res.result = final
+        scan_res.save()
         return super(Scans, self).form_valid(form)
 
 class UpdateScanView(UpdateView):
