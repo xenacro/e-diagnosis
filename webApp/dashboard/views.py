@@ -80,7 +80,7 @@ class Scans(LoginRequiredMixin, DetailView,FormMixin):
         img = tf.keras.preprocessing.image.load_img(path)
         data = tf.keras.preprocessing.image.img_to_array(img)
         data=tf.convert_to_tensor(data,dtype=tf.float32)
-        data=tf.reshape(data,(1,176,208,3))
+        data=tf.reshape(data,(1,208,176,3))
         mymodel = tf.keras.models.load_model('alzheimer_model.h5')
         res=mymodel.predict(data)
         final = 'Mild Demantia : ' + str(float("{:.3f}".format(res[0][0]*100))) + ' % <br> Moderate Demantia : ' + str(float("{:.3f}".format(res[0][1]*100))) + ' % <br> Non Demantia : ' + str(float("{:.3f}".format(res[0][2]*100)))+' % <br> Very Mild Demantia : ' + str(float("{:.3f}".format(res[0][3]*100))) + ' %'
